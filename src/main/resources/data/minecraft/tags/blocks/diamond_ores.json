@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:diamond_ore",
+    "morenetherore:nether_diamond_ore"
+  ]
+}
