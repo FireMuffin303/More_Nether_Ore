@@ -1,12 +1,14 @@
 package com.firemuffin303.morenetherore.registry;
 
 import com.firemuffin303.morenetherore.core.MoreNetherOre;
+import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
+import net.minecraft.block.material.Material;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
@@ -22,12 +24,10 @@ public class BlocksRegistry {
 
     }
 
-    public static final RegistryObject<Block> NETHER_IRON_ORE = BLOCKS.register("nether_iron_ore",() -> new Block(NetherOreBlockProperties.NETHER_ORES));
-    public static final RegistryObject<Block> NETHER_COAL_ORE = BLOCKS.register("nether_coal_ore",() -> new Block(NetherOreBlockProperties.NETHER_ORES));
-    public static final RegistryObject<Block> NETHER_DIAMOND_ORE = BLOCKS.register("nether_diamond_ore",() -> new Block(NetherOreBlockProperties.NETHER_ORES));
+    public static final RegistryObject<Block> NETHER_IRON_ORE = BLOCKS.register("nether_iron_ore",() -> new Block(AbstractBlock.Properties.create(Material.ROCK).func_235861_h_().sound(SoundType.field_235598_T_).hardnessAndResistance(3.0f,3.0f)));
+    public static final RegistryObject<Block> NETHER_DIAMOND_ORE = BLOCKS.register("nether_diamond_ore",() -> new Block(AbstractBlock.Properties.create(Material.ROCK).func_235861_h_().harvestLevel(2).harvestTool(ToolType.PICKAXE).sound(SoundType.field_235598_T_).hardnessAndResistance(3)));
 
     public static final RegistryObject<Item> NETHER_IRON_ORE_ITEM = ITEMS.register("nether_iron_ore",() -> new BlockItem(NETHER_IRON_ORE.get(),new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)));
-    public static final RegistryObject<Item> NETHER_COAL_ORE_ITEM = ITEMS.register("nether_coal_ore",() -> new BlockItem(NETHER_COAL_ORE.get(),new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)));
     public static final RegistryObject<Item> NETHER_DIAMOND_ORE_ITEM = ITEMS.register("nether_diamond_ore",() -> new BlockItem(NETHER_DIAMOND_ORE.get(),new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)));
 
 }
