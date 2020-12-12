@@ -1,9 +1,11 @@
 package com.firemuffin303.morenetherore.core;
 
-import com.firemuffin303.morenetherore.registry.BlocksRegistry;
-import net.minecraft.block.Block;
+import com.firemuffin303.morenetherore.init.BlocksRegistry;
+import com.firemuffin303.morenetherore.world.gen.ModFeatures;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.gen.GenerationStage;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -34,6 +36,17 @@ public class MoreNetherOre
 
     private void doClientStuff(final FMLClientSetupEvent event) { }
 
-
-
+    @SubscribeEvent
+    public void biomeGeneration (final BiomeLoadingEvent biome){
+        if (biome.getCategory() == Biome.Category.NETHER) {
+            biome.getGeneration().getFeatures(GenerationStage.Decoration.UNDERGROUND_DECORATION)
+                    .add(() -> ModFeatures.ORE_IRON_NETHER);
+            biome.getGeneration().getFeatures(GenerationStage.Decoration.UNDERGROUND_DECORATION)
+                    .add(() -> ModFeatures.ORE_DIAMOND_NETHER_SMALL);
+            biome.getGeneration().getFeatures(GenerationStage.Decoration.UNDERGROUND_DECORATION)
+                    .add(() -> ModFeatures.ORE_DIAMOND_NETHER_LARGE);
+        }
+    }
 }
+
+
